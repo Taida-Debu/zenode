@@ -1,0 +1,5 @@
+# Local issue tracking (not for the repo)
+issues/
+
+# Cursor agent instructions (local only)
+AGENTS.md
