@@ -28,15 +28,16 @@ export default function SubmitProposalPage() {
     deadline: ''
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = e.target instanceof HTMLInputElement ? e.target.checked : false;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
   };
 
-  const handleContributorChange = (index, value) => {
+  const handleContributorChange = (index: number, value: string) => {
     const updatedContributors = [...formData.contributors];
     updatedContributors[index] = value;
     setFormData(prev => ({
@@ -52,7 +53,7 @@ export default function SubmitProposalPage() {
     }));
   };
 
-  const removeContributor = (index) => {
+  const removeContributor = (index: number) => {
     const updatedContributors = [...formData.contributors];
     updatedContributors.splice(index, 1);
     setFormData(prev => ({
@@ -61,7 +62,7 @@ export default function SubmitProposalPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Proposal submitted:', formData);
     // Here you would typically send the data to your backend

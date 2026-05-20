@@ -23,7 +23,7 @@ import {
    DropdownMenuItem,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Profile from '@/pages/Profile';
+import Profile from '@/views/Profile';
 
 export default function ProfilePage() {
    // const [avatar, setAvatar] = useState<string | null>(null);

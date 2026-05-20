@@ -107,10 +107,12 @@ export default function Home() {
           </div>
 
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-green-500/20">
-            <img 
-              src="/dashboard.png" 
-              alt="Dashboard Preview" 
+            <img
+              src="/dashboard.png"
+              alt="Dashboard Preview"
               className="w-full h-auto"
+              width={1200}
+              height={675}
             />
           </div>
         </div>

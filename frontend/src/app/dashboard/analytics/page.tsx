@@ -22,7 +22,7 @@ import {
   PieChart, Pie, Cell, Legend,
   BarChart, Bar,
 } from 'recharts'
-import GitHubCalendar from 'react-github-calendar'
+import { GitHubCalendar } from 'react-github-calendar'
 
 const activityData = [
   { month: "Jan", contributions: 120 },
@@ -120,7 +120,7 @@ export default function AnalyticsPage() {
               <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
-                    <Pie data={contributionTypes} cx="50%" cy="50%" innerRadius={60} outerRadius={100} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
+                    <Pie data={contributionTypes} cx="50%" cy="50%" innerRadius={60} outerRadius={100} dataKey="value" label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}>
                       {contributionTypes.map((entry) => (
                         <Cell key={entry.name} fill={entry.color} />
                       ))}

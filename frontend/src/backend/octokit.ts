@@ -1,10 +1,31 @@
-import { App } from "octokit";
+import { App } from 'octokit';
 
-const app = new App({
-   appId: process.env.NEXT_PUBLIC_GITHUB_APP_ID as string,
-   privateKey: process.env.NEXT_PUBLIC_GITHUB_TOKEN as string
-});
+let cachedApp: App | null | undefined;
 
-// const octokit = await app.getInstallationOctokit(INSTALLATION_ID);
+function normalizePrivateKey(key: string): string {
+  return key.replace(/\\n/g, '\n');
+}
 
-export { app };
+/** Returns GitHub App client or null when credentials are not configured. */
+export function getGitHubApp(): App | null {
+  if (cachedApp !== undefined) {
+    return cachedApp;
+  }
+
+  const appId =
+    process.env.GITHUB_APP_ID ?? process.env.NEXT_PUBLIC_GITHUB_APP_ID;
+  const privateKeyRaw =
+    process.env.GITHUB_APP_PRIVATE_KEY ?? process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+
+  if (!appId || !privateKeyRaw) {
+    cachedApp = null;
+    return null;
+  }
+
+  cachedApp = new App({
+    appId,
+    privateKey: normalizePrivateKey(privateKeyRaw),
+  });
+
+  return cachedApp;
+}

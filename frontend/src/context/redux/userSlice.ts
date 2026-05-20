@@ -1,4 +1,3 @@
-import { app } from '@/backend/octokit';
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {

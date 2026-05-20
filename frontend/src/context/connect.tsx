@@ -4,7 +4,7 @@ import { ConnectKitProvider, createConfig } from '@particle-network/connectkit';
 import { authWalletConnectors } from '@particle-network/connectkit/auth';
 import { mainnet, solana } from '@particle-network/connectkit/chains';
 import { evmWalletConnectors } from '@particle-network/connectkit/evm';
-import { injected as solaInjected, solanaWalletConnectors } from '@particle-network/connectkit/solana';
+import { solanaWalletConnectors } from '@particle-network/connectkit/solana';
 import { wallet, EntryPosition } from '@particle-network/connectkit/wallet';
 import React from 'react';
 
@@ -14,9 +14,9 @@ const clientKey = process.env.NEXT_PUBLIC_CLIENT_KEY as string;
 const appId = process.env.NEXT_PUBLIC_APP_ID as string;
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID as string;
 
-const isConfigured = Boolean(projectId && clientKey && appId);
+export const isConnectKitConfigured = Boolean(projectId && clientKey && appId);
 
-const config = isConfigured
+const config = isConnectKitConfigured
    ? createConfig({
       projectId,
       clientKey,
@@ -37,14 +37,14 @@ const config = isConfigured
             '--pcm-secondary-button-bankground': 'rgba(0, 0, 0, 0.4)',
             '--pcm-secondary-button-hover-background': 'rgba(255, 255, 255, 0.05)',
          },
-         logo: 'https://github.com/Jossyboydgenius/Zenode/blob/c56dbf5453a9d7c35df410e009cef9ea918432f3/public/logo.png?raw=true',
+         logo: '/logo.png',
          filterCountryCallingCode: (countries) => {
             return countries.filter((item) => item === 'US');
          },
       },
       walletConnectors: [
          evmWalletConnectors({
-            metadata: { name: 'LazyDev', icon: '', description: 'Gamified Open Source Contributions', url: '' },
+            metadata: { name: 'LazyDev', icon: '/logo.png', description: 'Gamified Open Source Contributions', url: '' },
             walletConnectProjectId: walletConnectProjectId || '',
          }),
          authWalletConnectors({
@@ -73,7 +73,7 @@ export const ParticleConnectkit = ({ children }: React.PropsWithChildren) => {
    }
    return (
       <ConnectKitProvider config={config}>
-         <div className="custom-connect-button">{children}</div>
+         {children}
       </ConnectKitProvider>
    );
 };

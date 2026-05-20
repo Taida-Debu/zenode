@@ -1,7 +1,7 @@
-import { app } from "@/backend/octokit";
+import { getGitHubApp } from "@/backend/octokit";
 import { NextRequest, NextResponse } from "next/server";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 interface GitHubInstallationResponse {
   id: number;
@@ -26,6 +26,14 @@ interface GitHubRepoResponse {
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
+    const app = getGitHubApp();
+    if (!app) {
+      return NextResponse.json(
+        { error: "GitHub App is not configured (GITHUB_APP_ID and GITHUB_APP_PRIVATE_KEY)" },
+        { status: 503 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const username = searchParams.get("username");
 
