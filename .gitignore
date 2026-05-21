@@ -35,5 +35,5 @@ AGENTS.md
 # Local tooling (not for the repo)
 scripts/
 
-# Issue sync state (local run artifacts)
-issues/.sync-state.json
+# Local issue backlog & sync artifacts (never commit)
+issues/
