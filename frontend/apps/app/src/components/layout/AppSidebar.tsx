@@ -19,7 +19,7 @@ import {
 import { NavMain } from "@/components/nav/NavMain"
 import { NavProjects } from "@/components/nav/NavProjects"
 import { NavSecondary } from "@/components/nav/NavSecondary"
-import { NavUser } from "@/components/nav/NavUser"
+import { SidebarAuthFooter } from "@/components/layout/SidebarAuthFooter"
 import {
    Sidebar,
    SidebarContent,
@@ -30,9 +30,9 @@ import {
    SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { setUserAsync } from "@/context/redux/userSlice"
-import { AppDispatch, RootState } from "@/context/redux/store"
+import { AppDispatch } from "@/context/redux/store"
 import { setRepoAsync } from "@/context/redux/repoSlice"
 
 const data = {
@@ -238,8 +238,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
    //    }
    //    fetchUser();
    // }, []);
-   const user = useSelector((state: RootState) => state.user.user);
-   const repo = useSelector((state: RootState) => state.repo.name);
    const dispatch = useDispatch<AppDispatch>();
 
    useEffect(() => {
@@ -285,7 +283,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <NavSecondary items={data.navSecondary} className="mt-auto" />
          </SidebarContent>
          <SidebarFooter>
-            <NavUser user={{ ...user as any }} />
+            <SidebarAuthFooter />
          </SidebarFooter>
       </Sidebar>
    )

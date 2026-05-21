@@ -60,7 +60,7 @@ const config = isConnectKitConfigured
       plugins: [
          wallet({
             entryPosition: EntryPosition.BR,
-            visible: true,
+            visible: false,
          }),
       ],
       chains: [mainnet, solana],

@@ -40,7 +40,7 @@ export function NavUser({
 }) {
    const { isMobile } = useSidebar()
 
-   if (!user?.name && !user?.email) {
+   if (!user?.name && !user?.email && !user?.login) {
       return null
    }
 

@@ -1,6 +1,6 @@
  'use client'
 
-import React from 'react'
+import Link from 'next/link'
 import { AppSidebar } from "@/components/layout/AppSidebar"
 import {
   Breadcrumb,
@@ -18,11 +18,8 @@ import {
 } from "@/components/ui/sidebar"
 import { Activity, Users, GitPullRequest, Trophy, GitCommit, GitPullRequestDraft, MessageSquare, Star, Code } from 'lucide-react'
 import { ZenodeAvatar } from "@/components/ui/zenode-avatar"
-import { CodeEditor } from "@/components/CodeEditor"
 
 export default function OverviewPage() {
-  const [showEditor, setShowEditor] = React.useState(false);
-
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -97,18 +94,15 @@ export default function OverviewPage() {
           <div className="min-h-[calc(100vh-16rem)] rounded-xl glass-effect p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-semibold text-white">Recent Activity</h2>
-              <button 
-                onClick={() => setShowEditor(true)}
+              <Link
+                href="/playground/editor"
                 className="bg-gradient-to-r from-green-400 to-cyan-400 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2"
               >
                 <Code className="w-5 h-5" />
                 Start Coding
-              </button>
+              </Link>
             </div>
-            {showEditor ? (
-              <CodeEditor />
-            ) : (
-              <div className="space-y-6">
+            <div className="space-y-6">
                 {/* Activity Item 1 */}
                 <div className="flex items-start gap-4">
                   <ZenodeAvatar className="w-10 h-10" seed="alice" name="Alice Chen" />
@@ -179,7 +173,6 @@ export default function OverviewPage() {
                   </div>
                 </div>
               </div>
-            )}
           </div>
         </div>
       </SidebarInset>
