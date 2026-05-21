@@ -66,6 +66,56 @@ LazyDev is governed by a **DAO** that supports:
 - LazyDev DAO (coming soon)
 - Submit a challenge or project (coming soon)
 
+## Monorepo structure
+
+Frontend lives under **`frontend/`** (Turborepo + pnpm):
+
+| App | Path | Package | Port |
+|-----|------|---------|------|
+| Landing | `frontend/apps/landing` | `@zenode/landing` | 3000 |
+| App | `frontend/apps/app` | `@zenode/app` | 3001 |
+| Docs | `frontend/apps/docs` | `@zenode/docs` | 3002 |
+
+Shared UI: `frontend/packages/ui` (`@zenode/ui`).
+
+**Docs site** (`apps/docs`, port 3002) is for people **using** LazyDev—challenges, GitHub, rewards—not for cloning the repo. Engineering setup stays in this README and `AGENTS.md`.
+
+### Run locally
+
+With [just](https://github.com/casey/just) (recommended):
+
+```bash
+just install
+just landing dev    # http://localhost:3000
+just app dev        # http://localhost:3001
+just docs dev       # http://localhost:3002
+just dev            # all three via Turbo
+```
+
+Or pnpm from repo root:
+
+```bash
+pnpm install
+pnpm dev:landing
+pnpm dev:app
+pnpm dev:docs
+```
+
+Copy `frontend/apps/app/.env.example` to `frontend/apps/app/.env`. Cross-app URLs: `NEXT_PUBLIC_LANDING_URL`, `NEXT_PUBLIC_APP_URL`, `NEXT_PUBLIC_DOCS_URL`.
+
+### Pre-commit checks (Husky)
+
+`pnpm install` enables [Husky](https://typicode.github.io/husky/) via the `prepare` script. Every commit runs **lint**, **typecheck**, and **build** on changed `@zenode/*` packages (full workspace on the first commit).
+
+```bash
+pnpm check          # run all three manually (entire frontend)
+just check          # same via just
+```
+
+To skip hooks temporarily (not recommended): `git commit --no-verify`.
+
+Smart contracts remain in `contract/` (Foundry). See `AGENTS.md` for agent-oriented commands.
+
 ## Contributing
 
 We welcome contributors and collaborators who want to improve LazyDev or propose projects for challenges. Open an issue in this repository or reach out to the maintainers.

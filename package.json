@@ -1,0 +1,23 @@
+{
+  "name": "zenode",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "check": "turbo run lint typecheck build --filter=@zenode/*",
+    "prepare": "husky",
+    "dev:landing": "turbo dev --filter=@zenode/landing",
+    "dev:app": "turbo dev --filter=@zenode/app",
+    "dev:docs": "turbo dev --filter=@zenode/docs"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "turbo": "^2.5.4"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

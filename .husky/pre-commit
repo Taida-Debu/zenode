@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+set -e
+
+echo "Pre-commit: lint, typecheck, and build..."
+
+if git rev-parse --verify HEAD >/dev/null 2>&1; then
+  pnpm turbo run lint typecheck build --filter=...[HEAD]
+else
+  pnpm turbo run lint typecheck build --filter=@zenode/*
+fi
+
+echo "Pre-commit checks passed."

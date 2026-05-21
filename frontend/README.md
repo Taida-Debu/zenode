@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend (Turborepo)
 
-## Getting Started
+All web apps live under this directory:
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+frontend/
+├── apps/
+│   ├── landing/   @zenode/landing   → http://localhost:3000
+│   ├── app/       @zenode/app       → http://localhost:3001
+│   └── docs/      @zenode/docs      → http://localhost:3002
+└── packages/
+    └── ui/        @zenode/ui        shared components & styles
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Commands (from repo root)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Using [just](https://github.com/casey/just):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+just install
+just landing dev
+just app dev
+just docs dev
+just dev          # all three via Turbo
+```
 
-## Learn More
+Or pnpm:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+pnpm dev:landing
+pnpm dev:app
+pnpm dev:docs
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy `apps/app/.env.example` → `apps/app/.env` for API keys and wallet config.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Documentation site (`apps/docs`)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Product guides for contributors and maintainers (getting started, features, challenges, GitHub, FAQ) at port **3002**. Repo setup and env vars stay in the root `README.md` / `AGENTS.md`, not on the docs site.

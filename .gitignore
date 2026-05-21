@@ -1,3 +1,8 @@
+# Dependencies & turbo
+node_modules/
+.turbo/
+dist/
+
 # Local issue tracking (not for the repo)
 issues/
 
