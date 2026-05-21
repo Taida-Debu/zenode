@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'LazyDev Documentation',
   description: 'High-level and detailed documentation for the LazyDev platform.',
+  icons: {
+    icon: [{ url: '/favicon.png', sizes: '32x32', type: 'image/png' }],
+    apple: '/logo.png',
+  },
 };
 
 export default function DocsRootLayout({ children }: { children: React.ReactNode }) {
