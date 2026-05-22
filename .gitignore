@@ -15,6 +15,7 @@ dist/
 
 # TypeScript incremental builds
 *.tsbuildinfo
+**/tsconfig.tsbuildinfo
 
 # Environment & secrets
 .env
